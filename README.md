@@ -36,7 +36,7 @@ Build and Run your Project with:
 gradlew bootrun
 ```
 
-While running the project, open another terminal and run:
+While running on the project, open another terminal and run:
 ```
 curl "localhost:8080"
 ```
@@ -66,9 +66,9 @@ You might want to change the imported json path. You may configure this settings
   
   
 ## Screenshots
-![Screenshot](./screenshots/spring.PNG)
+![Screenshot](./screenshots/Spring.PNG)
 
-![Screenshot](./screenshots/welcome.PNG)
+![Screenshot](./screenshots/Welcome.PNG)
 
 ![Screenshot](./screenshots/news_source_table.PNG)
 
