@@ -8,12 +8,15 @@
 # Data Storing
 
 ## Descriptions
+<b>NOTE</b> : Refer to this <a href = "https://github.com/jesslyn1999/pre-Seleksi-2019-Tugas-2.git">repository</a> BEFOREHAND to learn how to get the related JSON file; `.\data\dataJson.json`, using REST API Request Method.
+
+<br>
 MySQL as an open-source relational database management system(RDBMS) is used in this project. MySQL is well-known for being the most secure and reliable DBMS in web applications like WordPress, Facebook, etc. Other benefits in applying MySql into projects can be explored more on <a href = "https://www.datamation.com/storage/8-major-advantages-of-using-mysql.html">this article</a>. MySQL was designed for speed and reliability. Applications using MySQL can access it through separate daemon process. An existed server stands between this database and other applications allows greater control over who has access to the database and thus makes it secure. MySQL has inspired a wealth of third-party applications, tools, and integrated libraries that extend its functionality and help make it easier to work with. Some of the more widely-used of these third-party tools are phpMyAdmin, DBeaver, and HeidiSQL.
 
 
 This project's main objective is to save the json file provided into the system of DBMS so that it can be used for further analysis and visualisations. The project currently only supports Java as the medium. MySQL installer itself has provided tool such as Connector/J(<a href = "https://www.javatpoint.com/java-jdbc">JDBC</a>) which supports Java connection. From Java side, there's <a href = "https://docs.spring.io/spring-data/jpa/docs/current/reference/html">JPA</a> library too which also supports MySQL queries validations and repository applications thus make it easier for developers to integrate and manage this database system.
 
-
+<br>
 References: https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems
 
 
