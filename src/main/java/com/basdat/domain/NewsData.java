@@ -14,6 +14,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class NewsData {
+
     private final String status;
     private final int totalResults;
 

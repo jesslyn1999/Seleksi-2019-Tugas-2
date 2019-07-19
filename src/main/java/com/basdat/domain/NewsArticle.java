@@ -12,6 +12,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class NewsArticle {
+
     private final NewsSource source;
 
     private final String author;

@@ -2,17 +2,13 @@ package com.basdat.service;
 
 import com.basdat.domain.NewsArticle;
 import com.basdat.domain.NewsData;
-import com.basdat.model.NewsArticleModel;
-import com.basdat.model.NewsSourceModel;
-import com.basdat.repository.NewsArticleRepository;
+import com.basdat.dto.NewsArticleModel;
+import com.basdat.dto.NewsSourceModel;
 import com.basdat.repository.NewsSourceRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class NewsRepositoryService {
 
-    private final NewsArticleRepository newsArticleRepository;
     private final NewsSourceRepository newsSourceRepository;
     private final NewsData newsData;
 
@@ -30,16 +25,20 @@ public class NewsRepositoryService {
 
         log.info("Start executing saveAllFromData");
 
-        List<NewsArticleModel> newsArticleModelList = new LinkedList<>();
-
         for (NewsArticle newsArticle : newsData.getArticles()) {
 
-            log.info("SOURCE={}",newsArticle.getSource());
+            NewsSourceModel newsSourceModel;
 
-            NewsSourceModel newsSourceModel = new NewsSourceModel();
-            newsSourceModel.setId(newsArticle.getSource().getId());
-            newsSourceModel.setName(newsArticle.getSource().getName());
-            newsSourceRepository.save(newsSourceModel);
+            if (newsSourceRepository.existsById(newsArticle.getSource().getName())) {
+                newsSourceModel = newsSourceRepository.findById(newsArticle.getSource().getName()).get();
+            } else {
+                newsSourceModel = new NewsSourceModel();
+                newsSourceModel.setName(
+                    newsArticle.getSource().getName());  // Name is primary key of entity 'news_source'
+                newsSourceModel.setNewsArticleModelList(new LinkedList<>());
+            }
+
+            newsSourceModel.setId(newsArticle.getSource().getId());  // Here the 'Id' is not primary key
 
             NewsArticleModel newsArticleModel = new NewsArticleModel();
             newsArticleModel.setNewsSourceModel(newsSourceModel);
@@ -51,18 +50,10 @@ public class NewsRepositoryService {
             newsArticleModel.setPublishedAt(newsArticle.getPublishedAt());
             newsArticleModel.setContent(newsArticle.getContent());
 
-            newsArticleRepository.save(newsArticleModel);
+            newsSourceModel.addNewsArticleModel(newsArticleModel);
 
-            newsArticleModelList.add(newsArticleModel);
-
-            //newsSourceModel.setNewsArticleModelList(newsArticleModelList);
-            //
-            //newsSourceRepository.save(newsSourceModel);
+            newsSourceRepository.save(newsSourceModel);
         }
-
-        log.info("All article have been copied to list");
-
-        //newsArticleRepository.saveAll(newsArticleModelList);
 
         log.info("Done in executing saveAllFromData");
     }

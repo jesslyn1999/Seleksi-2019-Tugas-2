@@ -1,4 +1,4 @@
-package com.basdat.model;
+package com.basdat.dto;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -6,7 +6,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
@@ -27,12 +27,12 @@ public class Auditable<U> {
     private U createdBy;
 
     @CreatedDate
-    private ZonedDateTime createdAt;
+    private LocalDateTime createdAt;
 
     @LastModifiedBy
     @Transient
     private U lastModifiedBy;
 
     @LastModifiedDate
-    private ZonedDateTime updatedAt;
+    private LocalDateTime updatedAt;
 }

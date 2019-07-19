@@ -1,14 +1,14 @@
-package com.basdat.model;
+package com.basdat.dto;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,8 +25,13 @@ public class NewsSourceModel extends Auditable<String> {
 
     private String id;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "newsSourceModel")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "newsSourceModel",
+               cascade = { CascadeType.ALL, CascadeType.PERSIST, CascadeType.MERGE })
     private List<NewsArticleModel> newsArticleModelList;
+
+    public void addNewsArticleModel(NewsArticleModel newsArticleModel) {
+        newsArticleModelList.add(newsArticleModel);
+    }
 
     public String toString() {
         return "NewsSourceModel{" +

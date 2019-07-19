@@ -14,7 +14,7 @@ import lombok.Data;
 public class News {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
     private String dateInfo;
@@ -23,5 +23,4 @@ public class News {
     private String imgSrc;
 
     public News() {}
-
 }

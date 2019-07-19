@@ -1,6 +1,6 @@
 package com.basdat.repository;
 
-import com.basdat.model.NewsArticleModel;
+import com.basdat.dto.NewsArticleModel;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
